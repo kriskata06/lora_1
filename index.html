@@ -5,8 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>For Lora</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: url("jj.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            font-size: 1.2rem; /* Increase base font size */
+        }
+    
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Add shadow to text */
+        }
+    
+        .slide {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    
+        .slide.active {
+            display: block;
+        }
+    
+        .slide h1 {
+            font-size: 3rem; /* Larger headings */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Shadow for headings */
+        }
+    
+        .slide p {
+            font-size: 1.5rem; /* Larger paragraph text */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Shadow for paragraphs */
+        }
+    
+        .btn {
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 1.5rem; /* Larger buttons */
+            border-radius: 8px; /* Slightly bigger button radius */
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+    
+    
 </head>
 <body>
-    
+    <div class="container">
+        <!-- Slide 1 -->
+        <div class="slide active" id="slide1">
+            <h1>Welcome, Lora!</h1>
+            <p>A mysterious admirer has created this for you.</p>
+            <button class="btn btn-primary" id="nextBtn">Discover More</button>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" id="slide2">
+            <h1>Will you go out on a date with me?</h1>
+            <button class="btn btn-success" id="yesBtn">Yes</button>
+            <button class="btn btn-danger" onclick="Nope();">No</button>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide" id="slide3">
+            <h1></h1>
+            <p>Your mysterious admirer is currently hiding in the cherry tree garden! 🍒🍒🍒</p>
+            <p>Now is your chance!</p>
+            <p>Go find Him!</p>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        // Function to show the current slide
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        // Move to the next slide
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        // Handle "Yes" button
+        document.getElementById('yesBtn').addEventListener('click', () => {
+            currentSlide = 2; // Go to Slide 3
+            showSlide(currentSlide);
+        });
+
+        // Handle "No" button
+        function Nope() {
+            alert("This option is unavailable at the moment!");
+        }
+    </script>
 </body>
 </html>
